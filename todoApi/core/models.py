@@ -39,11 +39,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Tag(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     tagname = models.CharField(max_length=100)
 
 class Status(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     statusname = models.CharField(max_length=100)
 
 class Task(models.Model):
