@@ -1,13 +1,13 @@
 from rest_framework.test import APIClient
 from rest_framework import status
-
-from django.urls import reverse
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 from task.serializers import TaskSerializer
 from core.models import Task, Status
 
+TASK_URL = reverse('task:task-list')
 
 def get_url_detail(id):
     return reverse('task-detail', args=[id])
@@ -44,7 +44,6 @@ class PublicTaskTest(TestCase):
         }
         res = self.client.post('/api/tasks/', payload)
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
-
 
 class PrivateTaskTest(TestCase):
     """Test get task authenticated"""
