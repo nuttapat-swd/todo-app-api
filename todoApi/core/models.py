@@ -41,17 +41,22 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Tag(models.Model):
     tagname = models.CharField(max_length=100)
 
+    def __str__(self):
+        return (str(self.id) + ': '+str(self.tagname))
 class Status(models.Model):
     statusname = models.CharField(max_length=100)
+
+    def __str__(self):
+        return (str(self.id) + ': '+str(self.statusname))
 
 class Task(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    tags = models.ManyToManyField(Tag, related_name='tasks')
-    status = models.ForeignKey(Status,on_delete=models.DO_NOTHING)
+    tags = models.ManyToManyField(Tag, related_name='tasks',blank=True,)
+    status = models.ForeignKey(Status,on_delete=models.DO_NOTHING, blank=True)
 
 
 

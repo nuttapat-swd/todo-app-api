@@ -18,8 +18,10 @@ class UserListView(APIView):
     """
     List all user or create a new one
     """
-    
-    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    # , TokenHasReadWriteScope
+    # permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    permission_classes = [permissions.IsAuthenticated]
+
     
     def get(self, request, format=None):
         users = get_user_model().objects.all()
