@@ -7,7 +7,7 @@ from django.urls import reverse
 from task.serializers import TaskSerializer
 from core.models import Task, Status
 
-TASK_URL = reverse('task:task-list')
+TASK_URL = reverse('task-list')
 
 def get_url_detail(id):
     return reverse('task-detail', args=[id])
